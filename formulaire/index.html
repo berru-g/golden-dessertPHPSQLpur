@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulaire de contact</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="contactForm" action="submit.php" method="POST">
+        <img src="../golden-dessert-logo.png" alt="Logo Golden Dessert" />
+        <h2>Contactez-nous</h2>
+        <p style="text-align: center; color:white;">Et recevez le catalogue automatiquement.</p>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email" required />
+
+        <label for="fullname">Nom complet</label>
+        <input type="text" name="fullname" id="fullname" placeholder="Votre Nom" required />
+
+        <!--<label for="statut">Vous êtes :</label>
+        <select name="statut" id="statut" required>
+            <option value="">-- Choisissez une option --</option>
+            <option value="restaurateur">Restaurateur</option>
+            <option value="fournisseur">Fournisseur</option>
+        </select>-->
+
+        <label for="telephone">Téléphone</label>
+        <input type="tel" name="telephone" id="telephone" placeholder="07 01 02 03 04" />
+
+        <label for="siteweb">Site Internet</label>
+        <input type="url" name="siteweb" id="siteweb" placeholder="www.votresiteweb.fr" />
+
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="5" placeholder="Votre message" required></textarea>
+
+        <button type="submit">Envoyer</button>
+    </form>
+    <div class="return-link">
+        <h2 style="margin-top:20px;font-size:1rem;"><a href="../index.html">← Revenir au site</a></h2>
+    </div>
+</body>
+</html>

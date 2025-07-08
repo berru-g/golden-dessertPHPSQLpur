@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notre Histoire | Golden Dessert</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="logo-container">
+      <img src="./golden-dessert-logo.png" alt="LogoGD" class="logo-img" />
+    </div>
+    <div class="hamburger">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="./index.html">HOME</a></li>
+      <li><a href="#contact">CATALOGUE</a></li>
+      <li><a href="./index.html#temoignages">PARTENAIRES</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <section class="presentation" style="padding-top: 120px;">
+    <div class="presentation-text">
+      <h2 class="section-title">NOTRE HISTOIRE</h2>
+      <p>Après plus de quinze années passées dans la restauration, en passant par les restaurants gastronomiques et les restaurants étoilés, Nicolas FOSSÉ, diplômé aussi bien en cuisine qu’en pâtisserie et passionné par son métier a fait la rencontre de Christian au sein du restaurant historique La Villa d’Or à Rezé.</p>
+
+      <p>Après plus d’un an passé ensemble, ils sont très vite arrivés à une conclusion : le manque de personnel en restauration.</p>
+
+      <p>Après longue réflexion, ils se sont demandé comment ils pouvaient aider la Restauration.</p>
+
+      <p>Puis, après avoir eu énormément de retours positifs sur les desserts et des demandes, ils ont décidé de monter un laboratoire de pâtisseries artisanales en partant d’un local vierge.</p>
+
+      <p>C’est ainsi que Golden Dessert est né.</p>
+
+      <p>Dans cette aventure, notre équipe met en avant de nombreuses valeurs telles que excellence, partage, créativité, exigence, rigueur, communication, passion, confiance, discipline.</p>
+      <a href="./index.html" class="btn">revenir au site</a>
+    </div>
+    
+  </section>
+
+  <footer id="contact">
+        <div class="footer-content">
+            <!--<div class="footer-section">
+                <h3>Nous contacter</h3>
+                <form action="https://formspree.io/f/mdkzkyob" method="POST" class="footer-form" id="contact-form">
+                    <input type="email" name="email" placeholder="Votre Email" required />
+                    <textarea name="message" placeholder="Ecrivez-nous et vous serez redirigé vers notre catalogue" rows="4" required></textarea>
+                    <button type="submit" class="btn">Envoyer</button>
+                </form>
+            </div>
+            <script>
+                const form = document.getElementById('contact-form');
+
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault(); // Empêche l'envoi classique
+
+                    const formData = new FormData(form);
+
+                    try {
+                        const response = await fetch(form.action, {
+                            method: form.method,
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+                        // https://www.canva.com/design/DAGkHyepW1w/bZeR3AoqZLTk09F7h-HMjg/edit?utm_content=DAGkHyepW1w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+                        if (response.ok) {
+                            window.location.href = "./formulaire/merci.html"; // Redirige après succès
+                        } else {
+                            alert("Une erreur est survenue. Merci de réessayer.");
+                        }
+                    } catch (error) {
+                        alert("Erreur de connexion. Vérifiez votre réseau.");
+                    }
+                });
+            </script>-->
+      <div class="footer-section">
+        <h3>Coordonnées</h3>
+        <p><strong>GOLDEN DESSERT</strong></p>
+        <p>5 rue de la Petite Meilleraie</p>
+        <p>44840 Les Sorinières</p>
+        <p>06 78 44 28 07</p>
+        <p>07 81 02 11 89</p>
+      </div>
+      <div class="footer-section">
+        <h3>Suivez-nous</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© Golden Dessert | Dev by <a href="https://gael-berru.netlify.app/">Berru-g</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const links = document.querySelectorAll('.nav-links a');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-active');
+      hamburger.classList.toggle('toggle');
+    });
+
+    links.forEach(link => {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('nav-active');
+        hamburger.classList.remove('toggle');
+      });
+    });
+  </script>
+</body>
+</html>

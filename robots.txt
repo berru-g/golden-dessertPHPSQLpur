@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://golden-dessert.netlify.app/sitemap.xml
