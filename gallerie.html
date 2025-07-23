@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notre Histoire | Golden Dessert</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo-container">
+            <img src="./golden-dessert-logo.png" alt="LogoGD" class="logo-img" />
+        </div>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="./index.html">HOME</a></li>
+            <li><a href="./index.html#contact">CATALOGUE</a></li>
+            <li><a href="./index.html#temoignages">PARTENAIRES</a></li>
+            <li><a href="./formulaire/index.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <section class="gallery" id="produits">
+        <h2 class="section-title">Quelques créations phares</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="./img/financier.jpg" alt="Entremet" />
+                <div class="gallery-item-caption">Entremet Grand Cru</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./img/1000097352.jpg" alt="Éclair" />
+                <div class="gallery-item-caption">Éclair Signature</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./img/1000097351.jpg" alt="Vanille" />
+                <div class="gallery-item-caption">Vanille Madagascar</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="./img/financier.jpg" alt="Entremet" />
+                <div class="gallery-item-caption">Entremet Grand Cru</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./img/1000097352.jpg" alt="Éclair" />
+                <div class="gallery-item-caption">Éclair Signature</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./img/1000097351.jpg" alt="Vanille" />
+                <div class="gallery-item-caption">Vanille Madagascar</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="./img/financier.jpg" alt="Entremet" />
+                <div class="gallery-item-caption">Entremet Grand Cru</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./img/1000097352.jpg" alt="Éclair" />
+                <div class="gallery-item-caption">Éclair Signature</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./img/1000097351.jpg" alt="Vanille" />
+                <div class="gallery-item-caption">Vanille Madagascar</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="./img/financier.jpg" alt="Entremet" />
+                <div class="gallery-item-caption">Entremet Grand Cru</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./img/1000097352.jpg" alt="Éclair" />
+                <div class="gallery-item-caption">Éclair Signature</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./img/1000097351.jpg" alt="Vanille" />
+                <div class="gallery-item-caption">Vanille Madagascar</div>
+            </div>
+        </div>
+        <br />
+        <a href="./formulaire/index.html" class="btn">Recevoir le catalogue complet</a>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+
+            <div class="footer-section">
+                <h3>Coordonnées</h3>
+                <p><strong>GOLDEN DESSERT</strong></p>
+                <p>5 rue de la Petite Meilleraie</p>
+                <p>44840 Les Sorinières</p>
+                <p>06 78 44 28 07</p>
+                <p>07 81 02 11 89</p>
+            </div>
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© Golden Dessert | Dev by <a href="https://gael-berru.netlify.app/">Berru-g</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const links = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            hamburger.classList.toggle('toggle');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', function () {
+                navLinks.classList.remove('nav-active');
+                hamburger.classList.remove('toggle');
+            });
+        });
+    </script>
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
