@@ -6,11 +6,6 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['ip_address'] !== $_SERVER
     exit();
 }
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-session_start();
-
-
 //voir secur.md pour finir la config 
 //require __DIR__.'./db_config.php'; 
 //$dsn = "mysql:host={$config['host']};dbname={$config['db']};charset={$config['charset']}";
@@ -58,7 +53,7 @@ try {
     <meta name="robots" content="noai">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link href="admin/style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
