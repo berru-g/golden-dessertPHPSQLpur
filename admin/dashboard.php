@@ -50,6 +50,13 @@ try {
     <meta name="keywords" content="admin, dashboard, gestion base de données, interface administrateur">
     <meta name="author" content="Gael Berru">
     <meta name="robots" content="noai">
+    <?php
+    $base_url = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/';
+    if ($base_url === '//') $base_url = '/'; // Correction racine
+    ?>
+    
+    <!-- Utilisation systématique de chemin absolu -->
+    <base href="<?= $base_url ?>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="admin/style.css" rel="stylesheet">
