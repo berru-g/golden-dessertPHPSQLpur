@@ -1,11 +1,15 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin_logged_in'])) {
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['ip_address'] !== $_SERVER['REMOTE_ADDR']) {
+    session_destroy();
     header('Location: login.php');
     exit();
 }
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+session_start();
+
 
 //voir secur.md pour finir la config 
 //require __DIR__.'./db_config.php'; 
