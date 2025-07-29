@@ -104,7 +104,7 @@ try {
                     <button id="mobileMenuBtn" class="mobile-menu-btn">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <h2>Messages clients</h2>
+                    <h2>InterSQL</h2>
                 </div>
                 
                 <div class="header-right">

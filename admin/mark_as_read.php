@@ -1,60 +1,39 @@
 <?php
 session_start();
-require_once 'db_config.php'; // Assurez-vous que ce chemin est correct
+require __DIR__ . '/db_config.php';
 
-header('Content-Type: application/json'); // Cette ligne DOIT être la première
+header('Content-Type: application/json');
 
-// Debug - à enlever après vérification
-error_log("Requête reçue: " . print_r($_POST, true));
+if (!isset($_SESSION['admin_logged_in'])) {
+    die(json_encode(['success' => false, 'error' => 'Non autorisé']));
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    die(json_encode(['success' => false, 'error' => 'Méthode non autorisée']));
+}
 
 try {
-    $pdo = new PDO($dsn, $config['user'], $config['pass']);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    if (!isset($_POST['id'])) {
-        throw new Exception('ID manquant');
-    }
+    $dsn = "mysql:host={$config['host']};dbname={$config['db']};charset={$config['charset']}";
+    $pdo = new PDO($dsn, $config['user'], $config['pass'], [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
 
     $stmt = $pdo->prepare("UPDATE contacts SET is_read = 1 WHERE id = ?");
     $stmt->execute([$_POST['id']]);
 
+    // Récupère le nouveau compte de messages non lus
     $unread = $pdo->query("SELECT COUNT(*) FROM contacts WHERE is_read = 0")->fetchColumn();
-    
-    // Réponse JSON VALIDE
+
     echo json_encode([
         'success' => true,
-        'unread' => (int)$unread
+        'unread' => $unread
     ]);
-    exit();
 
-} catch (Exception $e) {
-    // Log l'erreur pour debug
-    error_log("Erreur mark_as_read: " . $e->getMessage());
-    
-    // Réponse d'erreur JSON
+} catch (PDOException $e) {
+    error_log('Erreur DB: ' . $e->getMessage());
     echo json_encode([
         'success' => false,
-        'error' => $e->getMessage()
+        'error' => 'Erreur de base de données'
     ]);
-    exit();
 }
-
-try {
-    $pdo = new PDO($dsn, $config['user'], $config['pass']);
-    
-    // 1. Marquer le message comme lu
-    $stmt = $pdo->prepare("UPDATE contacts SET is_read = 1 WHERE id = ?");
-    $stmt->execute([$_POST['id']]);
-    
-    // 2. Récupérer le nouveau compte de messages non lus
-    $unreadCount = $pdo->query("SELECT COUNT(*) FROM contacts WHERE is_read = 0")->fetchColumn();
-    
-    echo json_encode([
-        'success' => true,
-        'unread' => $unreadCount
-    ]);
-    
-} catch (PDOException $e) {
-    echo json_encode(['success' => false]);
-}
-?>

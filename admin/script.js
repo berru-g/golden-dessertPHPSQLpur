@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Gestion du menu mobile
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const sidebar = document.querySelector('.sidebar');
-    
-    mobileMenuBtn.addEventListener('click', function() {
+
+    mobileMenuBtn.addEventListener('click', function () {
         sidebar.classList.toggle('active');
     });
-    
+
     // Fermer le menu quand on clique à l'extérieur
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         if (!sidebar.contains(e.target) && e.target !== mobileMenuBtn) {
             sidebar.classList.remove('active');
         }
@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Création de la modale
     const modal = document.getElementById('messageModal');
-    
+
     // Gestion des clics sur les lignes
     document.querySelectorAll('.message-row').forEach(row => {
         row.addEventListener('click', function (e) {
-            if (e.target.tagName === 'A' || e.target.closest('a') || 
+            if (e.target.tagName === 'A' || e.target.closest('a') ||
                 e.target.classList.contains('view-btn') || e.target.closest('.view-btn') ||
                 e.target.classList.contains('status-btn') || e.target.closest('.status-btn')) {
                 return;
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('modal-budget').textContent = senderBudget;
             document.getElementById('modal-date').textContent = messageDate;
             document.getElementById('modal-message').innerHTML = nl2br(fullMessage);
-            
+
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
 
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Gestion des boutons d'action dans le tableau
     document.querySelectorAll('.view-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
             e.stopPropagation();
             const row = this.closest('tr');
             row.click();
@@ -63,12 +63,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Gestion des boutons de la modale
-    modal.querySelector('.reply-btn').addEventListener('click', function() {
+    modal.querySelector('.reply-btn').addEventListener('click', function () {
         const email = document.getElementById('modal-email').textContent;
         window.location.href = `mailto:${email}?subject=Re: Votre message`;
     });
 
-    modal.querySelector('.mark-read-btn').addEventListener('click', function() {
+    modal.querySelector('.mark-read-btn').addEventListener('click', function () {
         const row = document.querySelector(`.message-row[data-id="${document.getElementById('message-id').textContent}"]`);
         if (row && row.classList.contains('unread')) {
             markAsRead(row.getAttribute('data-id'), row);
@@ -101,23 +101,27 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: 'id=' + messageId
+            body: new URLSearchParams({
+                id: messageId
+            })
         })
-        .then(response => {
-            if (!response.ok) throw new Error('Network error');
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                rowElement.classList.remove('unread');
-                document.getElementById('unreadCount').textContent = data.unread;
-                document.getElementById('unreadBadge').style.display = 
-                    data.unread > 0 ? 'flex' : 'none';
-            }
-        })
-        .catch(error => {
-            console.error('Erreur:', error);
-        });
+            .then(response => {
+                if (!response.ok) throw new Error('Erreur réseau');
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    rowElement.classList.remove('unread');
+                    document.getElementById('unreadCount').textContent = data.unread;
+                    document.getElementById('unreadBadge').style.display =
+                        data.unread > 0 ? 'flex' : 'none';
+                } else {
+                    console.error('Erreur:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
     }
 
     // Fonctionnalités de tri et pagination existantes
@@ -144,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
     searchInput.addEventListener('input', filterRows);
     statusFilter.addEventListener('change', filterRows);
     dateFilter.addEventListener('change', filterRows);
-    clearFilters.addEventListener('click', function() {
+    clearFilters.addEventListener('click', function () {
         searchInput.value = '';
         statusFilter.value = 'all';
         dateFilter.value = 'all';
@@ -156,37 +160,37 @@ document.addEventListener('DOMContentLoaded', function () {
         const statusValue = statusFilter.value;
         const dateValue = dateFilter.value;
         const today = new Date();
-        
+
         filteredRows = rows.filter(row => {
             // Filtre de recherche
-            const matchesSearch = searchTerm === '' || 
-                Array.from(row.cells).some(cell => 
+            const matchesSearch = searchTerm === '' ||
+                Array.from(row.cells).some(cell =>
                     cell.textContent.toLowerCase().includes(searchTerm)
                 );
-            
+
             // Filtre par statut
             const statusCell = row.cells[3].textContent.toLowerCase();
-            const matchesStatus = statusValue === 'all' || 
+            const matchesStatus = statusValue === 'all' ||
                 (statusValue === 'new' && row.classList.contains('unread')) ||
                 (statusValue === 'in_progress' && statusCell.includes('en cours')) ||
                 (statusValue === 'completed' && statusCell.includes('terminé'));
-            
+
             // Filtre par date
             const dateCell = new Date(row.cells[0].textContent);
             let matchesDate = true;
-            
+
             if (dateValue !== 'all') {
                 const diffTime = today - dateCell;
                 const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-                
+
                 if (dateValue === 'today' && diffDays !== 0) matchesDate = false;
                 if (dateValue === 'week' && diffDays > 7) matchesDate = false;
                 if (dateValue === 'month' && diffDays > 30) matchesDate = false;
             }
-            
+
             return matchesSearch && matchesStatus && matchesDate;
         });
-        
+
         currentPage = 1;
         updateTable();
         updatePagination();
@@ -196,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
     table.querySelectorAll('th').forEach(header => {
         header.addEventListener('click', () => {
             const columnIndex = header.cellIndex;
-            
+
             // Reset les autres en-têtes
             table.querySelectorAll('th').forEach(th => {
                 if (th !== header) {
@@ -215,28 +219,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
             header.classList.toggle('sorted-asc', sortDirection === 'asc');
             header.classList.toggle('sorted-desc', sortDirection === 'desc');
-            
+
             const icon = header.querySelector('i');
             icon.className = sortDirection === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down';
 
             filteredRows.sort((a, b) => {
                 let aValue = a.cells[columnIndex].textContent.toLowerCase();
                 let bValue = b.cells[columnIndex].textContent.toLowerCase();
-                
+
                 // Gestion spéciale pour les dates
                 if (columnIndex === 0) {
                     aValue = new Date(aValue);
                     bValue = new Date(bValue);
                     return sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
                 }
-                
+
                 // Gestion spéciale pour les budgets
                 if (columnIndex === 5) {
                     aValue = parseFloat(aValue) || 0;
                     bValue = parseFloat(bValue) || 0;
                     return sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
                 }
-                
+
                 // Tri texte standard
                 if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
                 if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
@@ -337,22 +341,22 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const btn = document.getElementById('exportJsonBtn');
             const originalHTML = btn.innerHTML;
-            
+
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Export...';
             btn.disabled = true;
 
             const response = await fetch('export_to_json.php');
             const data = await response.json();
-            
+
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
-            
+
             const a = document.createElement('a');
             a.href = url;
             a.download = `export_${new Date().toISOString().split('T')[0]}.json`;
             document.body.appendChild(a);
             a.click();
-            
+
             setTimeout(() => {
                 document.body.removeChild(a);
                 window.URL.revokeObjectURL(url);
@@ -367,15 +371,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Import JSON (exemple - à adapter)
-    document.getElementById('importJsonBtn').addEventListener('click', function() {
+    document.getElementById('importJsonBtn').addEventListener('click', function () {
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = '.json';
-        
+
         input.onchange = e => {
             const file = e.target.files[0];
             const reader = new FileReader();
-            
+
             reader.onload = event => {
                 try {
                     const jsonData = JSON.parse(event.target.result);
@@ -396,29 +400,29 @@ document.addEventListener('DOMContentLoaded', function () {
                                 },
                                 body: JSON.stringify(jsonData)
                             })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.success) {
-                                    Swal.fire('Succès', `Import réussi: ${data.count} entrées`, 'success')
-                                    .then(() => location.reload());
-                                } else {
-                                    Swal.fire('Erreur', data.message || 'Erreur lors de l\'import', 'error');
-                                }
-                            })
-                            .catch(error => {
-                                Swal.fire('Erreur', 'Une erreur est survenue', 'error');
-                                console.error(error);
-                            });
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        Swal.fire('Succès', `Import réussi: ${data.count} entrées`, 'success')
+                                            .then(() => location.reload());
+                                    } else {
+                                        Swal.fire('Erreur', data.message || 'Erreur lors de l\'import', 'error');
+                                    }
+                                })
+                                .catch(error => {
+                                    Swal.fire('Erreur', 'Une erreur est survenue', 'error');
+                                    console.error(error);
+                                });
                         }
                     });
                 } catch (error) {
                     Swal.fire('Erreur', 'Fichier JSON invalide', 'error');
                 }
             };
-            
+
             reader.readAsText(file);
         };
-        
+
         input.click();
     });
 });
