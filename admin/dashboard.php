@@ -6,9 +6,9 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 $host = 'localhost';
-$db = 'berru_template';
-$user = 'root';
-$pass = 'root'; // ou ton mot de passe MySQL O2Switch
+$db = 'u667977963_golden_dessert';
+$user = 'u667977963_berru_nico';
+$pass = 'm@bddSQL25'; // 
 $charset = 'utf8mb4';
 //voir secur.md pour finir la config 
 //require __DIR__.'./db_config.php'; 
@@ -42,7 +42,7 @@ try {
 -->
 <head>
     <meta charset="UTF-8">
-    <title>Admin - Base de données</title>
+    <title>GDbdd</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../logobdd.png" />
     <link rel="apple-touch-icon" href="../logobdd.png" />
