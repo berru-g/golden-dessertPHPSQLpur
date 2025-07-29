@@ -282,37 +282,6 @@ try {
         </div>
     </div>
 
-    <script>
-       const hamburgerMenu = document.querySelector('.inbox-icon');
-
-hamburgerMenu.addEventListener('click', () => {
-  Swal.fire({
-    title: '<h3 style="color:#ab9ff2; font-weight:600; margin-bottom: 1rem;">⚙️</h3>',
-    html: `
-      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 1rem;">
-        <a href="./facture.html" style="padding: 10px 16px; background: #ab9ff2; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 500; transition: background 0.3s;">
-          📑 Facture
-        </a>
-        <a href="./php-generate-hash.php" style="padding: 10px 16px; background: #ab9ff2; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 500; transition: background 0.3s;">
-          ✅ Generate Hash
-        </a>
-        <a href="#" style="padding: 10px 16px; background: #ab9ff2; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 500; transition: background 0.3s;">
-          <i class="fas fa-headset"></i> Assistance
-        </a>
-      </div>
-    `,
-    showCloseButton: true,
-    showConfirmButton: false,
-    background: '#f4f3fc',
-    customClass: {
-      popup: 'custom-swal-popup',
-      closeButton: 'custom-swal-close-button',
-      content: 'custom-swal-content',
-    }
-  });
-});
-
-</script>
     <script src="script.js"></script>
 </body>
 </html>
