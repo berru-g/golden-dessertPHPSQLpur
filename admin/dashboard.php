@@ -8,8 +8,9 @@ if (!isset($_SESSION['admin_logged_in'])) {
 $host = 'localhost';
 $db = 'u667977963_golden_dessert';
 $user = 'u667977963_berru_nico';
-$pass = 'm@bddSQL25'; // 
+$pass = 'm@bddSQL25';  
 $charset = 'utf8mb4';
+
 //voir secur.md pour finir la config 
 //require __DIR__.'./db_config.php'; 
 //$dsn = "mysql:host={$config['host']};dbname={$config['db']};charset={$config['charset']}";
@@ -40,7 +41,8 @@ try {
        Copyright (c) 2025 Berru
     ============================================
 -->
-
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard | GDbdd</title>
