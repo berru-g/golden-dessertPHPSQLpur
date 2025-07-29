@@ -169,6 +169,7 @@ try {
                                 <th data-column="4">Téléphone</th>
                                 <th data-column="5">Budget <i class="fas fa-sort"></i></th>
                                 <th data-column="6">Message</th>
+                                
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -282,6 +283,6 @@ try {
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
 </body>
 </html>
