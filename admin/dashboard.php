@@ -4,17 +4,19 @@ if (!isset($_SESSION['admin_logged_in'])) {
     header('Location: login.php');
     exit();
 }
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+//voir secur.md pour finir la config 
+//require __DIR__.'./db_config.php'; 
+//$dsn = "mysql:host={$config['host']};dbname={$config['db']};charset={$config['charset']}";
+//$pdo = new PDO($dsn, $config['user'], $config['pass']);
 
 $host = 'localhost';
 $db = 'u667977963_golden_dessert';
 $user = 'u667977963_berru_nico';
 $pass = 'm@bddSQL25'; // 
 $charset = 'utf8mb4';
-//voir secur.md pour finir la config 
-//require __DIR__.'./db_config.php'; 
-//$dsn = "mysql:host={$config['host']};dbname={$config['db']};charset={$config['charset']}";
-//$pdo = new PDO($dsn, $config['user'], $config['pass']);
-
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset", $user, $pass, [
@@ -23,7 +25,6 @@ try {
     $messages = $pdo->query("SELECT * FROM contacts ORDER BY created_at DESC")->fetchAll();
     $unread_count = $pdo->query("SELECT COUNT(*) FROM contacts WHERE is_read = 0")->fetchColumn();
     $total_messages = count($messages);
-    $messages = $pdo->query("SELECT * FROM contacts ORDER BY id DESC")->fetchAll();
 } catch (PDOException $e) {
     die("Erreur DB : " . $e->getMessage());
 }
@@ -40,8 +41,7 @@ try {
        Copyright (c) 2025 Berru
     ============================================
 -->
-<!DOCTYPE html>
-<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard | GDbdd</title>
@@ -193,7 +193,7 @@ try {
                                 </td>
                                 <td><?= htmlspecialchars($msg['telephone']) ?></td>
                                 <td><?= htmlspecialchars($msg['budget']) ?> €</td>
-                                <td><?= nl2br(htmlspecialchars(substr($msg['message'], 0, 50) . (strlen($msg['message']) > 50 ? '...' : '')) ?></td>
+                                <td><?= nl2br(htmlspecialchars(substr($msg['message'], 0, 50) . (strlen($msg['message']) > 50 ? '...' : ''))) ?></td>
                                 <td class="actions">
                                     <button class="view-btn" title="Voir le message complet">
                                         <i class="fas fa-eye"></i>

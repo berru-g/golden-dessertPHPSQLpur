@@ -6,9 +6,9 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 $host = 'localhost';
-$db = 'golden_dessert';
-$user = 'root';
-$pass = 'root'; // ou ton mot de passe MySQL O2Switch
+$db = 'u667977963_golden_dessert';
+$user = 'u667977963_berru_nico';
+$pass = 'm@bddSQL25'; 
 $charset = 'utf8mb4';
 //voir secur.md pour finir la config 
 //require __DIR__.'./db_config.php'; 
