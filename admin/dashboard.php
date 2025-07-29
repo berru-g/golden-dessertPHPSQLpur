@@ -1,7 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['ip_address'] !== $_SERVER['REMOTE_ADDR']) {
-    session_destroy();
+if (!isset($_SESSION['admin_logged_in'])) {
     header('Location: login.php');
     exit();
 }

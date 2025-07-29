@@ -2,7 +2,7 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /admin/  # Important si ton admin est dans un sous-dossier
+    RewriteBase /adminV1/  # Important si ton admin est dans un sous-dossier
     
     # Exclude actual files and directories from rewrite
     RewriteCond %{REQUEST_FILENAME} !-f
