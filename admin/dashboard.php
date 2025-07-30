@@ -255,7 +255,7 @@ try {
                         <span id="modal-phone" class="meta-value"></span>
                     </div>
                     <div class="meta-item">
-                        <span class="meta-label">Budget :</span>
+                        <span class="meta-label">Site :</span>
                         <span id="modal-budget" class="meta-value"></span>
                     </div>
                     <div class="meta-item">
