@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Gestion du menu mobile
+    // Gestion lMenu mobile 
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const sidebar = document.querySelector('.sidebar');
 
-    mobileMenuBtn.addEventListener('click', function () {
+    mobileMenuBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
         sidebar.classList.toggle('active');
     });
 

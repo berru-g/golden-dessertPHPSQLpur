@@ -165,7 +165,7 @@ try {
                                 <th data-column="0">Date <i class="fas fa-sort"></i></th>
                                 <th data-column="1">Nom <i class="fas fa-sort"></i></th>
                                 <th data-column="2">Mail</th>
-                                <th data-column="3">-</th>
+                                <!--<th data-column="3">-</th>-->
                                 <th data-column="4">Tél</th>
                                 <th data-column="5">URL <i class="fas fa-sort"></i></th>
                                 <th data-column="6">Message</th>
@@ -186,11 +186,11 @@ try {
                                         <i class="fas fa-envelope"></i> <?= htmlspecialchars($msg['email']) ?>
                                     </a>
                                 </td>
-                                <td>
+                                <!--<td>
                                     <span class="status-badge status-<?= strtolower(str_replace(' ', '_', htmlspecialchars($msg['statut']))) ?>">
                                         <?= htmlspecialchars($msg['statut']) ?>
                                     </span>
-                                </td>
+                                </td>-->
                                 <td><?= htmlspecialchars($msg['telephone']) ?></td>
                                 <td><?= htmlspecialchars($msg['siteweb']) ?> </td>
                                 <td><?= nl2br(htmlspecialchars(substr($msg['message'], 0, 50) . (strlen($msg['message']) > 50 ? '...' : ''))) ?></td>
