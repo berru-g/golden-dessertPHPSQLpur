@@ -165,10 +165,10 @@ try {
                                 <th data-column="0">Date <i class="fas fa-sort"></i></th>
                                 <th data-column="1">Nom <i class="fas fa-sort"></i></th>
                                 <th data-column="2">Mail</th>
-                                <!--<th data-column="3">Statut</th>-->
-                                <th data-column="3">Tél</th>
-                                <th data-column="4">URL <i class="fas fa-sort"></i></th>
-                                <th data-column="5">Mess</th>
+                                <th data-column="3">-</th>
+                                <th data-column="4">Tél</th>
+                                <th data-column="5">URL <i class="fas fa-sort"></i></th>
+                                <th data-column="6">Message</th>
                                 
                                 <th>Actions</th>
                             </tr>
