@@ -164,11 +164,11 @@ try {
                             <tr>
                                 <th data-column="0">Date <i class="fas fa-sort"></i></th>
                                 <th data-column="1">Nom <i class="fas fa-sort"></i></th>
-                                <th data-column="2">Email</th>
-                                <th data-column="3">Statut</th>
-                                <th data-column="4">Téléphone</th>
-                                <th data-column="5">Budget <i class="fas fa-sort"></i></th>
-                                <th data-column="6">Message</th>
+                                <th data-column="2">Mail</th>
+                                <!--<th data-column="3">Statut</th>-->
+                                <th data-column="3">Tél</th>
+                                <th data-column="4">URL <i class="fas fa-sort"></i></th>
+                                <th data-column="5">Mess</th>
                                 
                                 <th>Actions</th>
                             </tr>
@@ -192,7 +192,7 @@ try {
                                     </span>
                                 </td>
                                 <td><?= htmlspecialchars($msg['telephone']) ?></td>
-                                <td><?= htmlspecialchars($msg['budget']) ?> €</td>
+                                <td><?= htmlspecialchars($msg['siteweb']) ?> </td>
                                 <td><?= nl2br(htmlspecialchars(substr($msg['message'], 0, 50) . (strlen($msg['message']) > 50 ? '...' : ''))) ?></td>
                                 <td class="actions">
                                     <button class="view-btn" title="Voir le message complet">
