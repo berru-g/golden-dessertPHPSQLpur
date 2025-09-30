@@ -76,6 +76,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Playfair+Display:ital,wght@1,600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Google tag (gtag.js) 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3P9BL2VMEP"></script>
     <script>
@@ -111,21 +112,21 @@
 
     <section class="intro" data-gsap>
         <div class="intro-content">
-            <h1>Golden Dessert</h1>
-            <p>RESERVE AUX PROFESSIONELS. Des créations haut de gamme prêtes à servir pour restaurateurs exigeants.</p>
-            <a href="./formulaire/index.html" class="btn">Demander le catalogue</a>
+            <h1 data-aos="fade-up" data-aos-delay="200">Golden Dessert</h1>
+            <p data-aos="fade-up" data-aos-delay="300">RESERVE AUX PROFESSIONELS. Des créations haut de gamme prêtes à servir pour restaurateurs exigeants.</p>
+            <a href="./formulaire/index.html" class="btn" data-aos="fade-up" data-aos-delay="400">Demander le catalogue</a>
         </div>
     </section>
     <!-- SECTION PROBLÈME / SOLUTION -->
     <section class="presentation" data-gsap>
         <div class="presentation-text">
-            <h2 class="section-title">Un manque de main d'œuvre en cuisine ?</h2>
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="300">Un manque de main d'œuvre en cuisine ?</h2>
             <p>Golden Dessert est né d'une réalité du terrain : le besoin croissant de solutions fiables et haut de
                 gamme pour les desserts en restauration. Notre laboratoire artisanal conçoit des entremets dignes des
                 grandes tables, prêts à l’emploi, pour vous faire gagner du temps sans compromis sur la qualité.</p>
             <a href="./histoire.html" class="btn">Notre histoire</a>
         </div>
-        <div class="presentation-img">
+        <div class="presentation-img" data-aos="fade-up" data-aos-delay="200">
             <img src="./img/chef-patissier.jpg"
                 alt="Chef pâtissier" />
         </div>
@@ -134,15 +135,15 @@
     <section class="gallery" id="atouts" data-gsap>
         <h2 class="section-title">Pourquoi nous choisir ?</h2>
         <div class="features">
-            <div class="feature">
+            <div class="feature" data-aos="fade-up" data-aos-delay="200">
                 <h3>Gain de temps</h3>
                 <p>Des créations prêtes à dresser, pour optimiser votre mise en place sans sacrifier l'excellence.</p>
             </div>
-            <div class="feature">
+            <div class="feature" data-aos="fade-up" data-aos-delay="300">
                 <h3>Qualité constante</h3>
                 <p>Un rendu régulier, pensé pour les cuisines professionnelles exigeantes.</p>
             </div>
-            <div class="feature">
+            <div class="feature" data-aos="fade-up" data-aos-delay="400">
                 <h3>Créativité culinaire</h3>
                 <p>Des recettes originales et raffinées pour surprendre vos clients à chaque bouchée.</p>
             </div>
@@ -153,15 +154,15 @@
     <section class="gallery" id="produits" data-gsap>
         <h2 class="section-title">Quelques créations phares</h2>
         <div class="gallery-grid">
-            <div class="gallery-item">
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
                 <img src="./img/financier.jpg" alt="Entremet" />
                 <div class="gallery-item-caption">Entremet Grand Cru</div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
                 <img src="./img/1000097352.jpg" alt="Éclair" />
                 <div class="gallery-item-caption">Éclair Signature</div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
                 <img src="./img/1000097351.jpg" alt="Vanille" />
                 <div class="gallery-item-caption">Vanille Madagascar</div>
             </div>
@@ -228,10 +229,10 @@
                 <p>07 81 02 11 89</p>
             </div>
             <div class="footer-section">
-                <h3>Suivez-nous</h3>
+                <h3 data-aos="fade-up" data-aos-delay="200">Suivez-nous</h3>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#" data-aos="fade-up" data-aos-delay="300"><i class="fab fa-instagram"></i></a>
+                    <a href="#" data-aos="fade-up" data-aos-delay="400"><i class="fab fa-facebook"></i></a>
                     <!--<a href="#"><i class="fab fa-pinterest"></i></a>-->
                 </div>
             </div>
@@ -243,5 +244,16 @@
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialisation de AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 1200,
+                once: true,
+                easing: 'ease-out-back'
+            });
+        });
+    </script>
 </body>
 </html>
