@@ -216,7 +216,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     
     <div class="footer">
-        <a href="https://gael-berru.netlify.app#formulaire" rel="noopener" target="_blank">
+        <a href="https://gael-berru.com" rel="noopener" target="_blank">
             <span>Interface développée par berru-g</span>
             <i class="fas fa-headset"></i>
         </a>
