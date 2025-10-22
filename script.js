@@ -1,7 +1,7 @@
 //loader img smooth
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
-    setTimeout(() => loader.classList.add('fade-out'), 1000);
+    setTimeout(() => loader.classList.add('fade-out'), 500);
 });
 
 //menu
@@ -32,19 +32,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // animation scroll via GASP
 gsap.registerPlugin(ScrollTrigger);
 
-        gsap.utils.toArray("[data-gsap]").forEach(elem => {
-            gsap.fromTo(elem,
-                { opacity: 0, y: 40 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: elem,
-                        start: "top 80%",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
-        });
+gsap.utils.toArray("[data-gsap]").forEach(elem => {
+    gsap.fromTo(elem,
+        { opacity: 0, y: 40 },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: elem,
+                start: "top 80%",
+                toggleActions: "play none none none"
+            }
+        }
+    );
+});

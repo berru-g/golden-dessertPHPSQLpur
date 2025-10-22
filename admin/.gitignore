@@ -1,2 +1,5 @@
 .env
+db_confighost.php
 db_config.php
+figue.php
+../galerie/galerie-actions.php
