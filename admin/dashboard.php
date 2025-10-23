@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 //voir secur.md pour finir la config 
-require __DIR__.'./db_config.php'; 
+require __DIR__.'./db_config2.php'; 
 //$dsn = "mysql:host={$config['host']};dbname={$config['db']};charset={$config['charset']}";
 //$pdo = new PDO($dsn, $config['user'], $config['pass']);
 

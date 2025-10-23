@@ -4,7 +4,7 @@
  * Aucune backdoor - Code 100% transparent
  */
 session_start();
-require_once '../admin/figue.php';
+require_once 'figue.php';
 
 header('Content-Type: application/json; charset=utf-8');
 

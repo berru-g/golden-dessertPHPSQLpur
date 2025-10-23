@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once '../admin/figue.php';
-require_once '../includes/header.php';
+require_once 'figue.php';
 
 $pdo = getDbConnection();
 
@@ -85,133 +84,67 @@ $images = $stmt->fetchAll();
 
 $csrfToken = generateCsrfToken();
 ?>
+<doctype html>
+<html lang="fr">
 
-<style>
-    .admin-bar {
-        position: relative;
-        width: 100%;
-        padding: 0.5rem 2%;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        margin-top: 0rem;
-    }
-
-    .admin-controls {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        display: flex;
-        gap: 5px;
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
-
-    .gallery-item:hover .admin-controls {
-        opacity: 1;
-    }
-
-    .edit-btn, .delete-btn {
-        border: none;
-        color: white;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .edit-btn {
-        background: #c9a769;
-    }
-
-    .delete-btn {
-        background: #e74c3c;
-    }
-
-    .edit-title-input {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #444;
-        border-radius: 4px;
-        background: rgba(255, 255, 255, 0.9);
-        text-align: center;
-        font-size: 14px;
-    }
-
-    .popup {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        z-index: 1000;
-    }
-
-    .popup-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #1a1a1a;
-        padding: 30px;
-        border-radius: 12px;
-        width: 90%;
-        max-width: 400px;
-        color: white;
-    }
-
-    .popup h3 {
-        color: #c9a769;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    .popup input,
-    .popup button {
-        width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border: 1px solid #444;
-        border-radius: 6px;
-        background: #2a2a2a;
-        color: white;
-    }
-
-    .popup button {
-        background: #c9a769;
-        border: none;
-        cursor: pointer;
-        font-weight: 600;
-    }
-
-    .message {
-        padding: 10px;
-        margin: 10px 0;
-        border-radius: 4px;
-        text-align: center;
-    }
-
-    .success {
-        background: #27ae60;
-        color: white;
-    }
-
-    .error {
-        background: #e74c3c;
-        color: white;
-    }
-</style>
-
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Golden Dessert créateur de desserts haut de gamme pour restaurateurs</title>
+    <meta name="description"
+        content="Golden Dessert propose aux restaurateurs des desserts premium prêts à servir, faits avec passion et exigence par des artisans pâtissiers." />
+    <meta name="keywords"
+        content="desserts pour restaurant, pâtisserie artisanale, entremets haut de gamme, fournisseur desserts, Golden Dessert, pâtissier professionnel, livraison desserts restaurant" />
+    <meta name="author" content="Golden Dessert" />
+    <meta name="robots" content="index, follow" />
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="./golden-dessert-logo.png" />
+    <link rel="apple-touch-icon" href="./golden-dessert-logo.png" />
+    <!-- OPEN GRAPH (réseaux sociaux) -->
+    <meta property="og:title" content="Golden Dessert | Desserts premium pour restaurateurs" />
+    <meta property="og:description"
+        content="Découvrez Golden Dessert, laboratoire artisanal spécialisé dans la création de desserts haut de gamme prêts à servir pour la restauration." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://goldendessert.fr/" />
+    <meta property="og:image" content="https://goldendessert.fr/img/golden-dessert-logo.png" />
+    <meta property="og:site_name" content="Golden Dessert" />
+    <link rel="stylesheet" href="../style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/examples/js/loaders/GLTFLoader.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Playfair+Display:ital,wght@1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="../script.js"></script>
+</head>
 <body>
+    <div class="loader">
+        <img src="../golden-dessert-logo.png" alt="Golden Dessert" />
+    </div>
+
+    <nav>
+        <div class="logo-container">
+            <img src="../golden-dessert-logo.png" alt="LogoGD" class="logo-img" />
+        </div>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">HOME</a></li>
+            <li><a href="../histoire.html">HISTOIRE</a></li>
+            <li><a href="../#">GALERIE</a></li>
+            <li><a href="../formulaire/index.html">CONTACT</a></li>
+            <!--<li><a href="./admin/login.php"><i class="fa-solid fa-utensils"></i></a></li>-->
+        </ul>
+    </nav>
+
 
     <div class="admin-bar">
         <?php if (!$isAdmin): ?>
-            <button class="btn" onclick="showLogin()">
+            <button class="btn" onclick="showLogin()" style="background: transparent; color: transparent; border: none;">
                 <i class="fas fa-cog"></i> Mode Admin
             </button>
         <?php else: ?>
