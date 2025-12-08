@@ -116,7 +116,7 @@ $csrfToken = generateCsrfToken();
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="../script.js"></script>
+    
 </head>
 <body>
     <div class="loader">
@@ -239,6 +239,7 @@ $csrfToken = generateCsrfToken();
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    
     <?php require_once '../includes/footer.php' ?>
     
     <script>

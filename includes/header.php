@@ -1,6 +1,6 @@
 <?php
 //session_start();
-define('BASE_URL', 'http://localhost/golden-dessertPHPSQLpur/');
+define('BASE_URL', 'https://goldendessert.fr');
 define('SITE_NAME', 'Golden dessert');
 
 // Détecte les tentatives d'injection dans les URLs

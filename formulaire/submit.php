@@ -52,7 +52,7 @@ Ce message a été enregistré dans votre base de données.
 } catch (PDOException $e) {
     // En production, tu pourrais logger cette erreur plutôt que l'afficher
     error_log("Database error: " . $e->getMessage());
-    header("Location: erreur.html");
+    header("Location: index.html");
     exit();
 }
 ?>

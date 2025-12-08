@@ -14,6 +14,7 @@ define('DB_PASS', 'root'); // À CHANGER EN PRODUCTION
 // Pour générer : password_hash('ton_password', PASSWORD_BCRYPT)
 define('ADMIN_USERNAME', 'admin');
 define('ADMIN_PASSWORD_HASH', '$2y$10$8dcDLkJIx8P.2Bm7LqvXrusTKWmChgGbzXJ/GUf5l4il6GxnrZaVu'); // = 'golden2'
+
 // Configuration sécurité uploads
 define('UPLOAD_DIR', __DIR__ . '/../img/');
 define('UPLOAD_MAX_SIZE', 5242880); // 5MB
