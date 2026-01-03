@@ -1,6 +1,6 @@
 <?php
 // ============================================
-// SYSTEME ANTI-BOT GOLDEN DESSERT v2.0
+// SYSTEME ANTI-BOT GOLDEN DESSERT PATCH du 03/01/26 lire ./readme.md
 // ============================================
 
 // Démarrer la session pour le CSRF
@@ -9,7 +9,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // ==================== CONFIGURATION ====================
-$HONEYPOT_URL = "https://www.google.com/search?q=comment+arrêter+de+spammer+les+sites+web";
+// $HONEYPOT_URL = "https://www.google.com/search?q=comment+arrêter+de+spammer+les+sites+web";
+$HONEYPOT_URL = "https://www.gael-berru.com/"; // on vas pas se priver de traffic gratos merci le bot
+
 $BLOCK_DURATION = 3600; // 1 heure
 $MAX_ATTEMPTS = 3;
 
@@ -77,8 +79,11 @@ foreach ($required_fields as $field) {
     }
 }
 
+
 // ==================== ACTION SI BOT DÉTECTÉ ====================
 if ($is_bot) {
+    $log = date('[Y-m-d H:i:s]') . " | BOT_DETECTED | IP: $ip | UA: $user_agent | DETAILS: " . json_encode($bot_evidence) . "\n";//a verif
+    file_put_contents(__DIR__ . '/admin/security.log', $log, FILE_APPEND);// averif
     // Log l'attaque
     log_attack("BOT_DETECTED", [
         'evidence' => $bot_evidence,
