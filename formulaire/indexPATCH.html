@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact & Catalogue PATCH</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="https://gael-berru.com/smart_phpixel/smart-pixel.js"></script>
+    <!-- AJOUT : Protection CSRF -->
+    <?php 
+    if (session_status() === PHP_SESSION_NONE) session_start();
+    $csrf_token = bin2hex(random_bytes(32));
+    $_SESSION['csrf_token'] = $csrf_token;
+    ?>
+</head>
+<body>
+    <img src="https://gael-berru.com/smart_phpixel/pixel.php?source=FormGolden" width="1" height="1" style="display:none;">
+    
+    <form id="contactForm" action="submit.php" method="POST">
+        <!-- CHAMP CSRF CACHÉ (anti-automatisation) -->
+        <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+        
+        <!-- CHAMP TEMPS CACHÉ (anti-spam) -->
+        <input type="hidden" name="form_load_time" value="<?php echo time(); ?>">
+        
+        <!-- HONEYPOT 1 : Champ invisible pour bots -->
+        <div style="display:none !important; opacity:0; position:absolute; left:-9999px;">
+            <label for="fax_number">Numéro de fax</label>
+            <input type="text" id="fax_number" name="fax_number" autocomplete="off" tabindex="-1">
+        </div>
+        
+        <!-- HONEYPOT 2 : Checkbox piégée -->
+        <div style="display:none !important;">
+            <input type="checkbox" name="human_check" value="1" checked style="display:none;">
+        </div>
+
+        <img src="../golden-dessert-logo.png" alt="Logo Golden Dessert" />
+        <h2>Contactez-nous</h2>
+        <p style="text-align: center; color:white;">Et recevez le catalogue automatiquement.</p>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email" required />
+
+        <label for="fullname">Nom complet</label>
+        <input type="text" name="fullname" id="fullname" placeholder="Votre Nom" required />
+
+        <label for="telephone">Téléphone</label>
+        <input type="tel" name="telephone" id="telephone" placeholder="07 01 02 03 04" />
+
+        <label for="siteweb">Site Internet</label>
+        <input type="url" name="siteweb" id="siteweb" placeholder="www.votresiteweb.fr" />
+
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="5" placeholder="Votre message" required></textarea>
+
+        <button type="submit">Envoyer</button>
+    </form>
+    <div class="return-link">
+        <h2 style="margin-top:20px;font-size:1rem;"><a href="../index.html">← Revenir au site</a></h2>
+    </div>
+    
+    <!-- Script de validation doublon (invisible) -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contactForm');
+        if (form) {
+            // Validation supplémentaire invisible
+            form.addEventListener('submit', function(e) {
+                // Vérifie le honeypot
+                if (document.getElementById('fax_number').value !== '') {
+                    e.preventDefault();
+                    // Redirige le bot vers le piège
+                    window.location.href = 'honeypot.php?bot=caught&t=' + Date.now();
+                    return false;
+                }
+                
+                // Vérifie le temps minimum de remplissage (humain > 3 secondes)
+                const loadTime = parseInt(document.querySelector('[name="form_load_time"]').value);
+                const timeSpent = Math.floor((Date.now()/1000) - loadTime);
+                if (timeSpent < 3) {
+                    // Trop rapide = bot
+                    e.preventDefault();
+                    window.location.href = 'honeypot.php?bot=too_fast';
+                    return false;
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>
