@@ -2,6 +2,13 @@
 
 Un fucking bot envoie des formulaire vide depuis 2 mois et je n'avais encore pas capté la bonne faille. Bref la voici...
 
+**LE PROBLÈME DE BASE**
+le formulaire avait DEUX validations :
+    -HTML/JavaScript : required et script.js
+    -RIEN en PHP : submit.php acceptait tout !
+
+**Les bots bypassaient comme ça :**
+
 ### Il désactive le js dans la console :
 
     document.querySelector('form').removeAttribute('onsubmit');
@@ -40,7 +47,7 @@ J'utilises prepare() et execute() contre les injections SQL mais rien contre le 
 
     Rien ne change ! Même formulaire, même expérience
     Validation légèrement amélioré (messages d'erreur plus clairs)
-
+EN THEORIE CAR CELA NE FONCTIONNE PAS § FUCKING PATCH DE MERDE A REVOIR DAF
 ### Pour les bots :
 
     Champ "fax_number" invisible : Un bot le remplit → REDIRECTION vers ... on vas s'amuser un peut
